@@ -1,1 +1,23 @@
-<p>list works!</p>
+<div class="d-flex justify-content-between">
+  <h2>Listado de Héroes</h2>
+
+  <div>
+    <button (click)="removeLastHero()" class="btn btn-outline-danger btn-sm">
+      Borrar último Héroe
+    </button>
+
+    <div *ngIf="deletedHero; else elseBock;" class="badge bg-warning">
+      {{ deletedHero }}
+    </div>
+
+    <ng-template #elseBock>
+      <span class="badge bg-success">No ha borrado nada</span>
+    </ng-template>
+  </div>
+</div>
+
+<ul class="list-group mt-4">
+  <li *ngFor="let name of heroes" class="list-group-item">
+    {{ name }}
+  </li>
+</ul>
