@@ -1,4 +1,11 @@
 .sidebar {
   height: 100%;
   width: 200px;
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .sidebar {
+    display: block;
+  }
 }

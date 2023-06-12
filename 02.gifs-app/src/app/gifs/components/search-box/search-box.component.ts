@@ -6,9 +6,10 @@ import { GifsService } from 'gifs/services/gifs.service';
   template: `
     <h5>Search:</h5>
     <input
+      autofocus
       type="text"
       placeholder="Search gifs..."
-      class="form-control"
+      class="form-control mt-3"
       #txtTagInput
       (keyup.enter)="searchTag()"
     />
