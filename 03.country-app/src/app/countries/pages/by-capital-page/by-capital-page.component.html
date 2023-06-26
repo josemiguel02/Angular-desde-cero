@@ -1,17 +1,22 @@
-<h2>Por capital</h2>
+<div class="fade-in">
+  <h2>Por Capital</h2>
 
-<hr>
+  <hr />
 
-<div class="row">
-  <div class="col">
-    <shared-search-box placeholder="Buscar por capital"></shared-search-box>
+  <div class="row">
+    <div class="col">
+      <shared-search-box
+        placeholder="Buscar por capital"
+        (onValue)="searchByCapital($event)"
+      ></shared-search-box>
+    </div>
   </div>
-</div>
 
-<hr>
+  <hr />
 
-<div class="row">
-  <div class="col">
-    Tabla de response
+  <div class="row">
+    <div class="col">
+      <countries-table [countries]="countries"></countries-table>
+    </div>
   </div>
 </div>
