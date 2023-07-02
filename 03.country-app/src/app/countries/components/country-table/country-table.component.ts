@@ -1,4 +1,4 @@
-import { Country } from '@/countries/interfaces/country';
+import { Country } from '@/countries/interfaces/countries.interface';
 import { Component, Input } from '@angular/core';
 
 @Component({
