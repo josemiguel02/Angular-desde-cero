@@ -23,4 +23,49 @@
       {{ fullName | titlecase }}
     </p-card>
   </div>
+
+  <div class="col-12 md:col-6">
+    <p-card header="datepipe">
+      <ol>
+        <li>fecha</li>
+        <li>fecha | date</li>
+        <li>fecha | date:'short'</li>
+        <li>fecha | date:'long'</li>
+        <li>fecha | date:'MMMM'</li>
+        <li>fecha | date:'MMMM dd, yyyy'</li>
+      </ol>
+
+      <hr>
+
+      <ol>
+        <li>fecha | date:'long':'GMT-6'</li>
+        <li>fecha | date:'long':'GMT-4'</li>
+        <li>fecha | date:'long':'':'es-ec'</li>
+        <li>fecha | date:'long':'':'fr-CA'</li>
+      </ol>
+    </p-card>
+  </div>
+
+  <div class="col-12 md:col-6">
+    <p-card header="datepipe">
+      <ol>
+        <li>{{ customDate | date }}</li>
+        <li>{{ customDate | date:'short' }}</li>
+        <li>{{ customDate | date:'long' }}</li>
+        <li>{{ customDate | date:'MMMM' }}</li>
+        <li>{{ customDate | date:'MMMM dd, yyyy' }}</li>
+      </ol>
+
+      <hr>
+
+      <ol>
+        <li>{{customDate | date:'long':'GMT-6'}}</li>
+        <li>{{customDate | date:'long':'GMT-4'}}</li>
+        <li>{{customDate | date:'long':'':'es-EC'}}</li>
+        <li>{{customDate | date:'long':'':'fr-CA'}}</li>
+      </ol>
+    </p-card>
+  </div>
+
+
 </div>
