@@ -10,12 +10,19 @@
       </mat-card-subtitle>
     </mat-card-header>
 
-    <!-- TODO: imagen -->
+    <img
+      mat-card-image
+      [src]="hero | heroImage"
+      [alt]="hero.superhero"
+    />
+
     <mat-card-content class="mt-2">
       <span class="text-lg">{{ hero.publisher }}</span>
 
       <p>
-        <b>Primera aparición</b> {{ hero.first_appearance }} <br />
+        <b class="block">Primera aparición:</b>
+
+        {{ hero.first_appearance }}
 
         <mat-chip-listbox>
           <mat-chip
@@ -52,7 +59,6 @@
 
         Más
       </button>
-
     </mat-card-actions>
   </mat-card>
 </div>

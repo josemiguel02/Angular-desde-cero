@@ -1,1 +1,35 @@
-<p>search-page works!</p>
+<div class="flex flex-column p-2">
+  <h3>Buscador</h3>
+
+  <mat-form-field>
+    <mat-label>Buscador de héroes</mat-label>
+
+    <input
+      type="text"
+      matInput
+      [formControl]="searchInput"
+      (input)="onDebounce()"
+      [matAutocomplete]="auto"
+    />
+
+    <mat-autocomplete
+      autoActiveFirstOption
+      #auto="matAutocomplete"
+      (optionSelected)="onSelectedOption($event)"
+    >
+      <mat-option
+        *ngFor="let hero of heroes"
+        [value]="hero"
+      >
+        {{ hero.superhero }}
+      </mat-option>
+
+      <mat-option
+        value=""
+        *ngIf="!heroes.length && searchInput.value?.length"
+      >
+        No se encontró nada con el término: "{{ searchInput.value }}"
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</div>
