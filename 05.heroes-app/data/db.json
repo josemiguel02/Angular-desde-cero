@@ -21,7 +21,8 @@
       "publisher": "DC Comics",
       "alter_ego": "Kal-El",
       "first_appearance": "Action Comics #1",
-      "characters": "Kal-El"
+      "characters": "Kal-El",
+      "alt_img": "https://i.pinimg.com/originals/ef/b5/98/efb598ac0a58ac1efab7bbef9093d9a6.jpg"
     },
     {
       "id": "dc-flash",
@@ -166,6 +167,15 @@
       "alter_ego": "Norrin Radd",
       "first_appearance": "The Fantastic Four #48",
       "characters": "Norrin Radd"
+    },
+    {
+      "id": "qJf-94j",
+      "superhero": "Jose",
+      "publisher": "Marvel Comics",
+      "alter_ego": "DP",
+      "first_appearance": "Github",
+      "characters": "josemidev",
+      "alt_img": ""
     }
   ]
 }
