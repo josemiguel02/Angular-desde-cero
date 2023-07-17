@@ -2,7 +2,7 @@
   "users": [
     {
       "id": 1,
-      "usuario": "John Doe",
+      "user": "John Doe",
       "email": "john.doe@gmail.com"
     }
   ],
@@ -13,7 +13,8 @@
       "publisher": "DC Comics",
       "alter_ego": "Bruce Wayne",
       "first_appearance": "Detective Comics #27",
-      "characters": "Bruce Wayne"
+      "characters": "Bruce Wayne",
+      "alt_img": null
     },
     {
       "id": "dc-superman",
@@ -21,7 +22,8 @@
       "publisher": "DC Comics",
       "alter_ego": "Kal-El",
       "first_appearance": "Action Comics #1",
-      "characters": "Kal-El"
+      "characters": "Kal-El",
+      "alt_img": "https://i.pinimg.com/originals/ef/b5/98/efb598ac0a58ac1efab7bbef9093d9a6.jpg"
     },
     {
       "id": "dc-flash",
@@ -93,7 +95,8 @@
       "publisher": "Marvel Comics",
       "alter_ego": "Peter Parker",
       "first_appearance": "Amazing Fantasy #15",
-      "characters": "Peter Parker"
+      "characters": "Peter Parker",
+      "alt_img": null
     },
     {
       "id": "marvel-captain",
@@ -157,7 +160,8 @@
       "publisher": "Marvel Comics",
       "alter_ego": "Scott Summers",
       "first_appearance": "X-Men #1",
-      "characters": "Scott Summers"
+      "characters": "Scott Summers",
+      "alt_img": null
     },
     {
       "id": "marvel-silver",
