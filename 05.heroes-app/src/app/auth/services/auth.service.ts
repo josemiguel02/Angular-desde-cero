@@ -32,9 +32,9 @@ export class AuthService {
     localStorage.clear();
   }
 
-  checkAuthStatus(): Observable<boolean> | boolean {
+  checkAuthStatus(): Observable<boolean> {
     if (!localStorage.getItem('token')) {
-      return false;
+      return of(false);
     }
 
     const token = localStorage.getItem('token');
@@ -42,7 +42,7 @@ export class AuthService {
     return this.http.get<User>(`${this.BASE_URL}/users/1`)
       .pipe(
         tap(user => this.user = user),
-        map(user => Boolean(user)),
+        map(user => !!Object.keys(user).length),
         catchError(() => of(false)),
       );
   }

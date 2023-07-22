@@ -17,9 +17,7 @@ export class LoginPageComponent {
   onLogin() {
     this.authService.login('josemidev@gmail.com', '123456')
       .subscribe(user => {
-
         this.router.navigate(['/']);
-
       });
   }
 }
