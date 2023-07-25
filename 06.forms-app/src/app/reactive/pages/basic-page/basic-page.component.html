@@ -19,9 +19,11 @@
             placeholder="Nombre del producto"
           />
 
-          <span class="form-text text-danger">
-            <!-- Debe de ser de 3 letras -->
-            error message
+          <span
+            *ngIf="isValidField('name')"
+            class="form-text text-danger"
+          >
+            {{ getFieldError('name') }}
           </span>
         </div>
       </div>
@@ -36,7 +38,10 @@
             class="form-control"
             placeholder="Precio del producto"
           />
-          <span class="form-text text-danger">
+          <span
+            *ngIf="isValidField('price')"
+            class="form-text text-danger"
+          >
             El precio debe de ser 0 o mayor
           </span>
         </div>
@@ -53,7 +58,10 @@
             placeholder="Existencias del producto"
           />
 
-          <span class="form-text text-danger">
+          <span
+            *ngIf="isValidField('inStorage')"
+            class="form-text text-danger"
+          >
             Las existencias deben de ser 0 o mayor
           </span>
         </div>
@@ -63,7 +71,6 @@
         <div class="col">
           <button
             type="submit"
-            [disabled]="myForm.invalid"
             class="btn btn-primary d-block ms-auto"
           >
             Guardar
