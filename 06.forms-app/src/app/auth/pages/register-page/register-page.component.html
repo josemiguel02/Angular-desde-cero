@@ -3,7 +3,7 @@
 
 <div class="row">
   <div class="col">
-    <form autocomplete="off">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()" autocomplete="off">
       <!-- Nombre -->
       <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Nombre</label>
@@ -11,6 +11,7 @@
           <input
             type="text"
             class="form-control"
+            formControlName="name"
             placeholder="Nombre del usuario"
           />
 
@@ -27,6 +28,7 @@
           <input
             type="email"
             class="form-control"
+            formControlName="email"
             placeholder="Email del usuario"
           />
           <span class="form-text text-danger">
@@ -42,6 +44,7 @@
           <input
             type="text"
             class="form-control"
+            formControlName="username"
             placeholder="Nombre código del usuario"
           />
           <span class="form-text text-danger">
@@ -57,6 +60,7 @@
           <input
             type="password"
             class="form-control"
+            formControlName="password"
             placeholder="Password de su cuenta"
           />
 
@@ -73,6 +77,7 @@
           <input
             type="password"
             class="form-control"
+            formControlName="password2"
             placeholder="Confirmar la contraseña"
           />
 
@@ -84,35 +89,31 @@
 
       <div class="row">
         <div class="col">
-          <button
-            class="btn btn-primary float-end"
-            type="submit"
-          >
-            Crear
-          </button>
+          <button class="btn btn-primary float-end" type="submit">Crear</button>
         </div>
       </div>
     </form>
   </div>
 </div>
 
-<h2>Form Valid:</h2>
-<h2>Form Status:</h2>
-<h2>Form Pending:</h2>
+<h2>Form Valid: {{ myForm.valid }}</h2>
+<h2>Form Status: {{ myForm.status }}</h2>
+<h2>Form Pending: {{ myForm.pending }}</h2>
+
 <h2>Form errors</h2>
-<pre>{{ 'formulario' | json }}</pre>
+<pre>{{ myForm.errors | json }}</pre>
 
 <h5>Nombre</h5>
-<pre>{{ 'formulario' | json }}</pre>
+<pre>{{ myForm.value.name | json }}</pre>
 
 <h5>Email</h5>
-<pre>{{ 'formulario' | json }}</pre>
+<pre>{{ myForm.value.email | json }}</pre>
 
 <h5>Username</h5>
-<pre>{{ 'formulario' | json }}</pre>
+<pre>{{ myForm.get('username')?.errors | json }}</pre>
 
 <h5>Password</h5>
-<pre>{{ 'formulario' | json }}</pre>
+<pre>{{ myForm.value.password | json }}</pre>
 
 <h5>Confirmar</h5>
-<pre>{{ 'formulario' | json }}</pre>
+<pre>{{ myForm.value.password2 | json }}</pre>
