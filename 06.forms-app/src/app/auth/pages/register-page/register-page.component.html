@@ -15,7 +15,7 @@
             placeholder="Nombre del usuario"
           />
 
-          <span class="form-text text-danger">
+          <span *ngIf="isValidField('name')" class="form-text text-danger">
             Debe de ser en formato de nombre y apellido
           </span>
         </div>
@@ -31,7 +31,7 @@
             formControlName="email"
             placeholder="Email del usuario"
           />
-          <span class="form-text text-danger">
+          <span *ngIf="isValidField('email')" class="form-text text-danger">
             mensaje de error del email
           </span>
         </div>
@@ -47,7 +47,7 @@
             formControlName="username"
             placeholder="Nombre código del usuario"
           />
-          <span class="form-text text-danger">
+          <span *ngIf="isValidField('username')" class="form-text text-danger">
             El username no puede ser Strider
           </span>
         </div>
@@ -64,7 +64,7 @@
             placeholder="Password de su cuenta"
           />
 
-          <span class="form-text text-danger">
+          <span *ngIf="isValidField('password')" class="form-text text-danger">
             La contraseña debe de ser mayor de 6 caracteres.
           </span>
         </div>
@@ -81,7 +81,7 @@
             placeholder="Confirmar la contraseña"
           />
 
-          <span class="form-text text-danger">
+          <span *ngIf="isValidField('password2')" class="form-text text-danger">
             Las contraseñas deben de ser iguales
           </span>
         </div>
@@ -89,7 +89,9 @@
 
       <div class="row">
         <div class="col">
-          <button class="btn btn-primary float-end" type="submit">Crear</button>
+          <button type="submit" class="btn btn-primary d-block ms-auto">
+            Crear
+          </button>
         </div>
       </div>
     </form>
@@ -104,10 +106,10 @@
 <pre>{{ myForm.errors | json }}</pre>
 
 <h5>Nombre</h5>
-<pre>{{ myForm.value.name | json }}</pre>
+<pre>{{ myForm.get('name')?.errors | json }}</pre>
 
 <h5>Email</h5>
-<pre>{{ myForm.value.email | json }}</pre>
+<pre>{{ myForm.get('email')?.errors | json }}</pre>
 
 <h5>Username</h5>
 <pre>{{ myForm.get('username')?.errors | json }}</pre>
@@ -116,4 +118,4 @@
 <pre>{{ myForm.value.password | json }}</pre>
 
 <h5>Confirmar</h5>
-<pre>{{ myForm.value.password2 | json }}</pre>
+<pre>{{ myForm.get('password2')?.errors | json }}</pre>
