@@ -5,8 +5,11 @@
 body {
   background: #121212;
   color: #fafafa;
+  display: grid;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
+  min-height: 100vh;
+  place-items: center;
 }
 
 button {
@@ -27,7 +30,8 @@ button:hover {
   background: #31a0cf;
 }
 
-button:focus {
+button:focus,
+button:focus-visible {
   outline-offset: 2px;
   outline: 1px solid #31a0cf;
 }
