@@ -16,7 +16,7 @@ export const environments = {
     console.info('✨ Writing env...');
 
     await fs.mkdir(dirPath, { recursive: true });
-    await fs.writeFile(filePath, envFileContent);
+    await fs.writeFile(filePath, envFileContent.trimStart());
   } catch (error) {
     console.error(error);
   }
