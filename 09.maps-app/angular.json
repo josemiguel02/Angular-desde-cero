@@ -18,6 +18,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "mapbox-gl"
+            ],
             "outputPath": "dist/maps-app",
             "index": "src/index.html",
             "main": "src/main.ts",
