@@ -1,0 +1,48 @@
+<h1>Agregar producto</h1>
+
+<hr>
+
+<form [formGroup]="myForm" autocomplete="off">
+
+  <div class="row g-3 align-items-center mb-3">
+
+    <div class="col-auto">
+      <label>Nombre:</label>
+    </div>
+
+    <div class="col-auto">
+      <input formControlName="name" type="text" class="form-control">
+    </div>
+
+    <div class="col-auto">
+      <span
+        errorLabel
+        [color]="color"
+        [errors]="myForm.get('name')?.errors"
+        [touched]="myForm.get('name')?.touched"
+        [dirty]="myForm.get('name')?.dirty"
+      >
+      </span>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <button
+        (click)="changeColor()"
+        class="btn btn-info"
+      >
+        Cambiar color
+      </button>
+    </div>
+  </div>
+
+</form>
+
+
+<pre class="mt-5">Errors: {{ myForm.get('name')?.errors | json }}</pre>
+<p>Color: {{ color }}</p>
+
+<p>Touched: {{ myForm.get('name')?.touched | json }}</p>
+<p>Dirty: {{ myForm.get('name')?.dirty | json }}</p>
