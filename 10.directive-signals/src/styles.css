@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  background: #0f172a;
+}
+
+li {
+  cursor: pointer;
+}
+
+.row {
+  margin-inline: 0;
+}
