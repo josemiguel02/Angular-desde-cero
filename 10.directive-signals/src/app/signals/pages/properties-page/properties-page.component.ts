@@ -6,6 +6,7 @@ import { User } from '@/signals/interfaces/user.interface';
   styles: [],
 })
 export class PropertiesPageComponent {
+
   public user = signal<User>({
     id: 1,
     email: 'george.bluth@reqres.in',
@@ -33,22 +34,10 @@ export class PropertiesPageComponent {
     // }));
 
     // Forma #3
-    const values: Record<keyof User, keyof User> = {
-      id: 'id',
-      email: 'email',
-      first_name: 'first_name',
-      last_name: 'last_name',
-      avatar: 'avatar',
-    };
-
     this.user.mutate(current => {
-
-      if (field in values) {
-        current[values[field]] = field === 'id'
-          ? (Number(value) as never)
-          : (value as never);
+      if (field in current) {
+        current[field] = value as never;
       }
-
     });
   }
 }
