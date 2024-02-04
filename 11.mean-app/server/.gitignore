@@ -2,7 +2,11 @@
 /dist
 /node_modules
 
-mongo/
+mongo/*
+.env*
+!.env.example
+!.env.template
+package-lock.json
 
 # Logs
 logs
