@@ -1,14 +1,18 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   BadRequestException,
   Injectable,
   InternalServerErrorException,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { JwtService } from '@nestjs/jwt';
+import { Model, Types } from 'mongoose';
+import * as bcrypt from 'bcryptjs';
 
 import { User } from './entities/user.entity';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateAuthDto } from './dto/update-auth.dto';
+import { CreateUserDto, LoginDto } from './dto';
+import { JwtPayload, LoginResponse } from './interfaces/auth.interface';
 
 @Injectable()
 export class AuthService {
@@ -16,13 +20,23 @@ export class AuthService {
   constructor(
     @InjectModel(User.name)
     private readonly userModel: Model<User>,
+    private readonly jwtService: JwtService,
   ) {}
 
-  async register(createUserDto: CreateUserDto): Promise<User> {
+  async create(createUserDto: CreateUserDto): Promise<Omit<User, 'password'>> {
     try {
-      const newUser = new this.userModel(createUserDto);
+      const { password, ...userData } = createUserDto;
 
-      return await newUser.save();
+      const newUser = new this.userModel({
+        ...userData,
+        password: bcrypt.hashSync(password, 10),
+      });
+
+      await newUser.save();
+
+      const { password: _, ...userCreated } = newUser.toJSON();
+
+      return userCreated;
     } catch (error) {
       if (error?.code === 11000) {
         throw new BadRequestException(`${createUserDto.email} already exists!`);
@@ -32,19 +46,52 @@ export class AuthService {
     }
   }
 
-  findAll() {
-    return `This action returns all auth`;
+  async login(loginDto: LoginDto): Promise<LoginResponse> {
+    const { email, password } = loginDto;
+
+    const existsUser = await this.userModel.findOne({
+      email,
+    });
+
+    const isMatchPass = bcrypt.compareSync(password, existsUser?.password);
+
+    if (!existsUser || !isMatchPass) {
+      throw new UnauthorizedException('Not valid credentials');
+    }
+
+    const { password: _, ...user } = existsUser.toJSON();
+
+    const data: LoginResponse = {
+      user,
+      accessToken: this.getJwtToken({ id: user._id }),
+    };
+
+    return data;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} auth`;
+  async register(createUserDto: CreateUserDto): Promise<LoginResponse> {
+    const user = await this.create(createUserDto);
+
+    const data: LoginResponse = {
+      user,
+      accessToken: this.getJwtToken({ id: user._id }),
+    };
+
+    return data;
   }
 
-  update(id: number, updateAuthDto: UpdateAuthDto) {
-    return `This action updates a #${id} auth`;
+  findAll(): Promise<User[]> {
+    return this.userModel.find();
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} auth`;
+  async findById(id: Types.ObjectId) {
+    const user = await this.userModel.findById(id);
+    const { password, ...userData } = user.toJSON();
+
+    return userData;
+  }
+
+  getJwtToken(payload: JwtPayload): string {
+    return this.jwtService.sign(payload);
   }
 }

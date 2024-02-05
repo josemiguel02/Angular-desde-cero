@@ -1,5 +1,7 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { MongooseModule, ModelDefinition } from '@nestjs/mongoose';
+import { JwtModule } from '@nestjs/jwt';
 
 import { User, UserSchema } from './entities/user.entity';
 import { AuthService } from './auth.service';
@@ -14,7 +16,14 @@ const models: ModelDefinition[] = [
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     MongooseModule.forFeature(models),
+
+    JwtModule.register({
+      global: true,
+      secret: process.env.JWT_SECRET_KEY,
+      signOptions: { expiresIn: '6h' },
+    }),
   ],
   controllers: [AuthController],
   providers: [AuthService],
