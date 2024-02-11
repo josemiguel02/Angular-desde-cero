@@ -1,1 +1,7 @@
-<router-outlet />
+<h1 *ngIf="!finishedAuthCheck(); else routerBlock">
+  Loading...
+</h1>
+
+<ng-template #routerBlock>
+  <router-outlet />
+</ng-template>

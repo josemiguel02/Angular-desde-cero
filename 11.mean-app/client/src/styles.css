@@ -34,6 +34,7 @@
 body, html {
     height: 100%;
     font-family: Poppins-Regular, sans-serif;
+    background-color: #e5e5f7;
 }
 
 /*---------------------------------------------*/
@@ -94,6 +95,7 @@ textarea:focus, input:focus {
 
 /*---------------------------------------------*/
 button {
+    color: inherit;
     outline: none !important;
     border: none;
     background: transparent;
@@ -131,6 +133,10 @@ button:hover {
 .limiter {
   width: 100%;
   margin: 0 auto;
+
+  opacity: 0.8;
+  background-image:  linear-gradient(#444cf7 1px, transparent 1px), linear-gradient(to right, #444cf7 1px, #e5e5f7 1px);
+  background-size: 20px 20px;
 }
 
 .container-login100 {
@@ -340,7 +346,8 @@ button:hover {
 }
 
 .login100-form-btn:disabled {
-  background-color: grey;
+  cursor: default;
+  background-color: #d9d9d9;
 }
 
 
